@@ -15,7 +15,7 @@ class Wordle:
 
     def check_guess(self, guess):
         """
-        Checks the users input if it equals or a character
+        Checks the user's input if it matches or a character
         in the word that the user has entered is in the word
         that's to be guessed.
         """
@@ -24,6 +24,8 @@ class Wordle:
         
         # Check if user has entered something
         if guess:
+            # Return a message if the length word that the user 
+            # has entered is greater than five (5).
             if len(guess) > 5: return "The word does not exceed 5 letters"
             else:
                 if guess == self.word: 
@@ -31,6 +33,10 @@ class Wordle:
                     quit()
 
                 else:
+                    # Iterate over each letter in the word that
+                    # the user has entered and check if a letter
+                    # matches or the letter is in the word that's 
+                    # to be guessed. Apply the appropriate emote.
                     for i, c in enumerate(guess[:]):
                         if c == self.word[i]: result += "✅"
                         elif c in self.word: result += "🟨"
@@ -50,7 +56,6 @@ class Wordle:
         print("------------------")
 
         while self.number_of_guesses != 0:
-            # Ask user to guess the word
             self.guess = input("Guess: ")
 
             print(self.check_guess(self.guess))
