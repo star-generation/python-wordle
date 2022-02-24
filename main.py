@@ -22,19 +22,22 @@ class Wordle:
 
         result = ""
         
-        if len(guess) > 5: return "The word does not exceed 5 letters"
-        else:
-            if guess == self.word: 
-                print(f"Correct! The word is {self.word}.")
-                quit()
-
+        # Check if user has entered something
+        if guess:
+            if len(guess) > 5: return "The word does not exceed 5 letters"
             else:
-                for i, c in enumerate(guess[:]):
-                    if c == self.word[i]: result += "✅"
-                    elif c in self.word: result += "🟨"
-                    else: result += "🛑"
-                
-                return result
+                if guess == self.word: 
+                    print(f"Correct! The word is {self.word}.")
+                    quit()
+
+                else:
+                    for i, c in enumerate(guess[:]):
+                        if c == self.word[i]: result += "✅"
+                        elif c in self.word: result += "🟨"
+                        else: result += "🛑"
+                    
+                    return result
+        else: return "Please enter a word."
 
     def run(self):
         """Starts the game."""
