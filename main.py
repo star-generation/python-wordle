@@ -1,38 +1,62 @@
-word, guess = "crane", ""
+from random_word import RandomWords
 
-print(word)
+class Wordle:
+    """
+    Contains the necessary functions and variables for the game wordle.
+    """
 
-print("You have 5 chances to guess the word I am thinking.")
-print("-------")
+    word, guess = "", ""
+    number_of_guesses = 0
 
-def check_guess(guess):
-    result = ""
+    def __init__(self):
+        rw = RandomWords()
+        self.word = rw.get_random_word(maxLength=5)
+        self.number_of_guesses = 5
 
-    if len(guess) > 5: return "The word does not exceed 5 letters"
-    else:
-        if guess == word: 
-            print(f"Correct! The word is {word}.")
-            quit()
+    def check_guess(self, guess):
+        """
+        Checks the users input if it equals or a character
+        in the word that the user has entered is in the word
+        that's to be guessed.
+        """
 
+        result = ""
+        
+        if len(guess) > 5: return "The word does not exceed 5 letters"
         else:
-            for i, c in enumerate(guess[:]):
-                if i < len(word):
-                    if c == word[i]: result += "X"
-                    else: result += "O"
-            
-            return result
+            if guess == self.word: 
+                print(f"Correct! The word is {self.word}.")
+                quit()
+
+            else:
+                for i, c in enumerate(guess[:]):
+                    if c == self.word[i]: result += "✅"
+                    elif c in self.word: result += "🟨"
+                    else: result += "🛑"
                 
+                return result
 
-def main():
-    number_of_guesses = 5
+    def run(self):
+        """Starts the game."""
 
-    while number_of_guesses != 0:
-        guess = input("Guess: ")
-        print(check_guess(guess))
-        number_of_guesses -= 1
+        print("You have 5 chances to guess the word I am thinking.")
+        print("------------------")
+        print("✅ - The letter is in the correct spot.")
+        print("🟨 - The letter is in the wrong spot.")
+        print("🛑 - The letter is not in the word.")
+        print("------------------")
 
-    print(f"The word was {word}.")
+        while self.number_of_guesses != 0:
+            # Ask user to guess the word
+            self.guess = input("Guess: ")
 
+            print(self.check_guess(self.guess))
+            self.number_of_guesses -= 1
+
+        print(f"The word was {self.word}.")
+
+    
 
 if "__main__" == __name__:
-    main()
+    wordle = Wordle()
+    wordle.run()
