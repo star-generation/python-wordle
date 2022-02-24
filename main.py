@@ -11,7 +11,7 @@ class Wordle:
     def __init__(self):
         rw = RandomWords()
         self.word = rw.get_random_word(maxLength=5)
-        self.number_of_guesses = 5
+        self.number_of_guesses = 6
 
     def check_guess(self, guess):
         """
@@ -40,7 +40,7 @@ class Wordle:
                     for i, c in enumerate(guess[:]):
                         if c == self.word[i]: result += "✅"
                         elif c in self.word: result += "🟨"
-                        else: result += "🛑"
+                        else: result += "🟥"
                     
                     return result
         else: return "Please enter a word."
@@ -52,7 +52,7 @@ class Wordle:
         print("------------------")
         print("✅ - The letter is in the correct spot.")
         print("🟨 - The letter is in the wrong spot.")
-        print("🛑 - The letter is not in the word.")
+        print("🟥 - The letter is not in the word.")
         print("------------------")
 
         while self.number_of_guesses != 0:
