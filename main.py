@@ -26,7 +26,7 @@ class Wordle:
             # has entered is greater than five (5).
             if len(guess) > 5: return "The word does not exceed 5 letters"
             else:
-                if guess == self.word: 
+                if guess == self.word.lower(): 
                     print(f"Correct! The word is {self.word}.")
                     quit()
 
@@ -37,7 +37,7 @@ class Wordle:
                     # to be guessed. Apply the appropriate emote.
 
                     self.result = ""
-                    for i, c in enumerate(guess[:]):
+                    for i, c in enumerate(guess):
                         if c == self.word[i]: self.result += "✅"
                         elif c in self.word: self.result += "🟨"
                         else: self.result += "🟥"
@@ -48,7 +48,7 @@ class Wordle:
     def run(self):
         """Starts the game."""
 
-        print("You have 5 chances to guess the word I am thinking.")
+        print(f"You have 6 chances to guess the word I am thinking.")
         print("------------------")
         print("✅ - The letter is in the correct spot.")
         print("🟨 - The letter is in the wrong spot.")
@@ -58,13 +58,12 @@ class Wordle:
         while self.number_of_guesses != 0:
             self.guess = input("Guess: ")
 
-            print(self.check_guess(self.guess))
+            print(self.check_guess(self.guess.lower()))
             self.number_of_guesses -= 1
 
         print(f"The word was {self.word}.")
-
     
 
 if "__main__" == __name__:
     wordle = Wordle()
-    wordle.run()
+    wordle.print_char()
