@@ -1,4 +1,4 @@
-# World
+# Wordle
 
 This is a simple text based clone of the game wordle using python.
 
