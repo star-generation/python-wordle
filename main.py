@@ -26,7 +26,7 @@ class Wordle:
             # has entered is greater than five (5).
             if len(guess) > 5: return "The word does not exceed 5 letters"
             else:
-                if guess == self.word.lower(): 
+                if guess == self.word: 
                     print(f"Correct! The word is {self.word}.")
                     quit()
 
