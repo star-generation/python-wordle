@@ -66,4 +66,4 @@ class Wordle:
 
 if "__main__" == __name__:
     wordle = Wordle()
-    wordle.print_char()
+    wordle.run()
