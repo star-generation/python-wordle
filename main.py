@@ -10,7 +10,7 @@ class Wordle:
 
     def __init__(self):
         rw = RandomWords()
-        self.word = rw.get_random_word(maxLength=5)
+        self.word = rw.get_random_word(hasDictionaryDef="true", maxLength=5)
         self.number_of_guesses = 6
 
     def check_guess(self, guess):
