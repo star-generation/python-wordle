@@ -5,7 +5,7 @@ class Wordle:
     Contains the necessary functions and variables for the game wordle.
     """
 
-    word, guess = "", ""
+    word, guess, result = "", "", ""
     number_of_guesses = 0
 
     def __init__(self):
@@ -19,8 +19,6 @@ class Wordle:
         in the word that the user has entered is in the word
         that's to be guessed.
         """
-
-        result = ""
         
         # Check if user has entered something
         if guess:
@@ -37,12 +35,14 @@ class Wordle:
                     # the user has entered and check if a letter
                     # matches or the letter is in the word that's 
                     # to be guessed. Apply the appropriate emote.
+
+                    self.result = ""
                     for i, c in enumerate(guess[:]):
-                        if c == self.word[i]: result += "✅"
-                        elif c in self.word: result += "🟨"
-                        else: result += "🟥"
+                        if c == self.word[i]: self.result += "✅"
+                        elif c in self.word: self.result += "🟨"
+                        else: self.result += "🟥"
                     
-                    return result
+                    return self.result
         else: return "Please enter a word."
 
     def run(self):
