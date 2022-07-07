@@ -5,11 +5,10 @@ class Wordle:
     Contains the necessary functions and variables for the game wordle.
     """
 
-    word, guess, result = "", "", ""
-    number_of_guesses = 0
-
     def __init__(self):
         rw = RandomWords()
+        self.guess = ""
+        self.result = ""
         self.word = rw.get_random_word(hasDictionaryDef="true", maxLength=5)
         self.number_of_guesses = 6
 
